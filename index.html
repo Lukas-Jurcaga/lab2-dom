@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
+    <link rel="stylesheet" href="style.css">
     <title>Bear Escape</title>
 </head>
 <body>
 
 <div id="title">
-    <h1>Help the bear escape thew bee!</h1>
+    <h1>Help the bear escape the bees!</h1>
     <p>
         Bear tries to avoid being stung by <input type="number" id="bamount"> bees by running and jumping. The objective is to have little stings as possible!
     </p>
@@ -21,10 +21,15 @@
     </p>
     <br>
     <h2>Move the bear by using the left, right, up and down arrow keys</h2>
+    <br>
+    <button class="btn">Start</button>
+    <button class="btn">Add Bee</button>
 </div>
 
 <div id="scores">
-
+    <h3>
+        Stings: [<sub id="stings">0</sub>] Best Duration [<sub id="duration">0</sub>]
+    </h3>
 </div>
 
 <div id="board">
