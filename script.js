@@ -241,7 +241,9 @@ function isStung(defender, offender){
     //Checks if it currently overlaps
     if(overlap(defender, offender)){
         let score = getScore()
+        //increments the score if the defender gets hit
         score = Number(score) + 1;
+        //outputs score
         stings.innerHTML = score;
         console.log(firstMove)
         if(!firstMove) calcDuration();
