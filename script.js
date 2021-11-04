@@ -3,9 +3,9 @@ function start(){
     bear = new Bear();
 
     //Initiates bees array
-    bees = [];
+    bees = []
 
-    firstMove = true;
+    restartGame()
 
     //adds event listener on keydown
     document.addEventListener("keydown", moveBear, false)
@@ -15,8 +15,10 @@ function start(){
     document.getElementById("startbtn").addEventListener("click", makeBees, false)
     //Add bee event listener
     document.getElementById("addbee").addEventListener("click", addBee, false)
+    //Restart game listener
+    document.getElementById("restart").addEventListener("click", restartGame, false)
 
-    updateBees()
+
 }
 
 
@@ -72,7 +74,7 @@ function moveBear(e){
     const KEYRIGHT = 39;
 
     //checks if it was the bear's first move
-    if (firstMove){
+    if (firstMove && (e.keyCode === KEYUP || e.keyCode === KEYDOWN || e.keyCode === KEYLEFT || e.keyCode === KEYRIGHT)){
         lastTimeStung = new Date();
         firstMove = false;
     }
@@ -229,24 +231,26 @@ function updateBees(){
     //update timer for next move
     if(getScore() >= 1000){
         alert("Game Over!")
-        //reset()
+        restartGame()
     }else{
         updateTimer = setTimeout("updateBees()", period)
     }
 }
 
 function isStung(defender, offender){
+    //Checks if it currently overlaps
     if(overlap(defender, offender)){
         let score = getScore()
         score = Number(score) + 1;
         stings.innerHTML = score;
-        calcDuration()
+        console.log(firstMove)
+        if(!firstMove) calcDuration();
     }
 }
 
+//Gets the stung score
 function getScore(){
     return score = stings.innerHTML;
-
 }
 
 function overlap(element1, element2) {
@@ -272,28 +276,40 @@ function overlap(element1, element2) {
 
 function calcDuration(){
     let newStingTime = new Date();
+    //Calculates the current duration between stings
     let currDuration = newStingTime - lastTimeStung;
+    //Sets a new last time stung to the new stung
     lastTimeStung = newStingTime;
-    let longestDuration = parseInt(document.getElementById("duration").innerHTML);
-    console.log(longestDuration)
+    let longestDuration = parseInt(duration.innerHTML);
+
+    //Checks if the longest duration is currently either zero or smaller then the current duration
     if(longestDuration === 0) longestDuration = currDuration;
     else if (longestDuration < currDuration) longestDuration = currDuration;
-    document.getElementById("duration").innerHTML = longestDuration;
+
+    //Outputs the longest duration
+    duration.innerHTML = longestDuration;
 }
 
 function reset(){
+    //Clears the current timer
     clearTimeout(updateTimer)
+    //Resets all data
     duration.innerHTML = 0;
     stings.innerHTML = 0;
     let element;
-    for (const bee in bees) {
-        console.log(bee.id)
-        element = document.getElementById(bee.id)
+    //Deletes all bees
+    for (let i = 0; i < bees.length; i++) {
+        element = document.getElementById(bees[i].id)
         element.remove()
     }
     bees = []
+    firstMove = true;
+}
 
-
+//Restarts the game
+function restartGame(){
+    reset()
+    updateBees()
 }
 
 
