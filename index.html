@@ -3,10 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        var bear;
+        var bees;
+        var updateTimer;
+        var lastTimeStung;
+        var firstMove;
+    </script>
+    <script src="script.js"></script>
+    <noscript>
+        Warning - JavaScript is Disabled.
+        For full functionality of this page, please enable JavaScript.
+    </noscript>
     <title>Bear Escape</title>
 </head>
-<body>
-
+<body onload="start();">
 <div id="title">
     <h1>Help the bear escape the bees!</h1>
     <p>
@@ -17,23 +29,33 @@
         You can adjust the bees' speed <input type="number" id="bspeed"> px/ms
     </p>
     <p>
-        and the refresh rate <input type="number" id="refrate"> ms
+        The refresh rate <input type="number" id="refrate"> ms
+    </p>
+    <p>
+        And the bear's speed <input type="number" id="speed"> px/keystroke
     </p>
     <br>
     <h2>Move the bear by using the left, right, up and down arrow keys</h2>
     <br>
-    <button class="btn">Start</button>
-    <button class="btn">Add Bee</button>
+    <button class="btn" id="startbtn">Start</button>
+    <button class="btn" id="addbee">Add Bee</button>
 </div>
 
 <div id="scores">
-    <h3>
-        Stings: [<sub id="stings">0</sub>] Best Duration [<sub id="duration">0</sub>]
-    </h3>
+    <table>
+        <tr>
+            <td>
+                <p>Stings: [<span id="stings" >0</span>]</p>
+            </td>
+            <td>
+                <p>Best duration: [<span id="duration">0</span>]</p>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <div id="board">
-
+    <img src="./images/bear.gif" id="bear" alt="bear">
 </div>
 
 </body>

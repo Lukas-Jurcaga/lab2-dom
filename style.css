@@ -1,7 +1,44 @@
 body {
     background-color: aliceblue;
+    width: 50%;
+    height: 100%;
 }
 
 #title {
     background-color: lightslategrey;
+    width: 100%;
+}
+
+#scores{
+    width: 100%;
+    height: auto;
+    align-content: center;
+    align-self: center;
+    background-color: antiquewhite;
+}
+
+
+#stings{
+    color: red;
+}
+
+#duration{
+    color: dodgerblue;
+}
+
+#board{
+    position: absolute;
+    align-content: center;
+    align-self: center;
+    width: 50%;
+    height: 30%;
+    background-color: darkolivegreen;
+}
+
+#bear{
+    position: absolute;
+    width: 15%;
+    height: 50%;
+    left: 42.5%;
+    top: 50%
 }
